@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Search from "./components/Search";
 import Basket from "./components/Basket";
 import axios from "axios";
+import Snack from "./components/Snack";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     const [items, setItems] = React.useState();
     const [cardItems, setCardItems] = React.useState([])
     const [isLoading, setLoading] = React.useState(true)
+    const [isSnakeOpen, setSnakeOpen] = React.useState(false)
     React.useEffect(() => {
         axios.get("https://dummyjson.com/products?limit=10")
             .then((response) => {
@@ -39,16 +41,25 @@ function App() {
             }
             setCardItems([...cardItems, newItem])
         }
+        setSnakeOpen(true)
     }
-
     function removeFromBasket(basketId) {
-        console.log(basketId)
+        setCardItems([...cardItems].filter(elem => {
+            return elem.id !== basketId;
+        }))
+    }
+    function filterSearch(query){
+        if (query.length === 0)return items;
+        else{
+            setItems()
+        }
     }
 
     return (
         <div className="App">
             <Header
                 setCardOpen={setCardOpen}
+                badgeLen={cardItems.length}
             />
             <Container>
                 <Search/>
@@ -63,6 +74,10 @@ function App() {
                 anchor={"left"}
                 isCardOpen={isCardOpen}
                 setCardOpen={() => setCardOpen(false)}
+            />
+            <Snack
+                isOpen={isSnakeOpen}
+                handleClose={()=>setSnakeOpen(false)}
             />
         </div>
     );

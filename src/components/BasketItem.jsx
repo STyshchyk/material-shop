@@ -4,7 +4,7 @@ import {Close} from "@mui/icons-material";
 
 const BasketItem = (props) => {
     const {
-        deleteFromBusket = Function.prototype,
+        removeFromBasket = Function.prototype,
         basketElem
     } = props
     return (
@@ -17,7 +17,7 @@ const BasketItem = (props) => {
             </Typography>
             <IconButton
                 sx={{marginLeft:"auto"}}
-                onClick={() => deleteFromBusket(basketElem.id)}
+                onClick={() => removeFromBasket(basketElem.id)}
             >
                 <Close/>
             </IconButton>

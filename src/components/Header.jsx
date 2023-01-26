@@ -1,8 +1,8 @@
 import React from 'react';
-import {AppBar, IconButton, Toolbar, Typography} from "@mui/material";
+import {AppBar, Badge, IconButton, Toolbar, Typography} from "@mui/material";
 import {ShoppingBasket} from "@mui/icons-material";
 
-const Header = ({setCardOpen}) => {
+const Header = ({setCardOpen, badgeLen = 0}) => {
     return (
         <AppBar position={"static"} sx={{marginBottom: 2}}>
             <Toolbar>
@@ -13,12 +13,17 @@ const Header = ({setCardOpen}) => {
                 >
                     MUI Shop
                 </Typography>
-                <IconButton
-                    color={"inherit"}
-                    onClick={()=> setCardOpen(true)}
+                <Badge
+                color={"secondary"}
+                badgeContent={badgeLen}
                 >
-                    <ShoppingBasket/>
-                </IconButton>
+                    <IconButton
+                        color={"inherit"}
+                        onClick={() => setCardOpen(true)}
+                    >
+                        <ShoppingBasket/>
+                    </IconButton>
+                </Badge>
             </Toolbar>
         </AppBar>
     );

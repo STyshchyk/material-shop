@@ -21,7 +21,12 @@ const CardItem = (props) => {
                     sx={{display: "block", objectFit: "contain", mb: 2}}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="div"
+                        sx={{whiteSpace:"nowrap"}}
+                    >
                         {cardTitle}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -36,7 +41,7 @@ const CardItem = (props) => {
                         color="text.secondary"
                         sx={{marginRight: "auto"}}
                     >
-                        {cardPrice} usd
+                       Price: {cardPrice} $
                     </Typography>
                     <Button
                         variant={"outlined"}

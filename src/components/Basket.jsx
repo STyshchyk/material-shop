@@ -20,8 +20,9 @@ const Basket = (props) => {
             <List
                 sx={{
                     width: {xs: "320px", sm: "400px", lg: "500px"},
-                    display:"flex",
-                    flexDirection:"column"
+                    display: "flex",
+                    flexDirection: "column"
+
                 }}
             >
                 <ListItem>
@@ -42,24 +43,24 @@ const Basket = (props) => {
                             Basket is empty
                         </ListItem>
                         : <>
-                        {cardItems.map((elem) => (
-                            <BasketItem
-                                key={elem.title}
-                                removeFromBasket={removeFromBasket}
-                                basketElem={elem}
-                            />))}
-
-                            <ListItem  sx={{marginTop:"auto"}}>
+                            {cardItems.map((elem) => (
+                                <BasketItem
+                                    key={elem.title}
+                                    removeFromBasket={removeFromBasket}
+                                    basketElem={elem}
+                                />))}
+                            <Divider/>
+                            <ListItem sx={{marginTop: "auto"}}>
                                 <Typography
                                     variant={"body2"}
                                     component={"span"}
-                                    sx={{fontWeight:"700"}}
+                                    sx={{fontWeight: "700"}}
                                 >
                                     Total price: {" "}
-                                    {cardItems.reduce((acc, item)=>{
+                                    {cardItems.reduce((acc, item) => {
                                         return acc + item.price * item.quantity;
                                     }, 0)}
-                                    {" "} usd
+                                    {" "} $
                                 </Typography>
                             </ListItem>
                         </>

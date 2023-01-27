@@ -4,7 +4,7 @@ import {ShoppingBasket} from "@mui/icons-material";
 
 const Header = ({setCardOpen, badgeLen = 0}) => {
     return (
-        <AppBar position={"static"} sx={{marginBottom: 2}}>
+        <AppBar position={"sticky"} sx={{marginBottom: 2}}>
             <Toolbar>
                 <Typography
                     component={"h6"}

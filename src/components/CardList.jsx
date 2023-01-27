@@ -10,7 +10,7 @@ const CardList = (props) => {
         getItem = Function.prototype
 
     } = props;
-    console.log("render")
+    console.log(items)
     return (
         <Grid container spacing={2}>
             {!isLoading && items.length > 0 ?

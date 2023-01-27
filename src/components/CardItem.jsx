@@ -25,7 +25,6 @@ const CardItem = (props) => {
                         gutterBottom
                         variant="h5"
                         component="div"
-                        sx={{whiteSpace:"nowrap"}}
                     >
                         {cardTitle}
                     </Typography>

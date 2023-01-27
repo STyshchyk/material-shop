@@ -11,14 +11,16 @@ import Snack from "./components/Snack";
 
 function App() {
     const [isCardOpen, setCardOpen] = useState(false)
-    const [items, setItems] = React.useState();
+    const [items, setItems] = React.useState([]);
     const [cardItems, setCardItems] = React.useState([])
     const [isLoading, setLoading] = React.useState(true)
     const [isSnakeOpen, setSnakeOpen] = React.useState(false)
+    const [searchQuery, setSearchQuery] = React.useState("")
+
     React.useEffect(() => {
-        axios.get("https://dummyjson.com/products?limit=10")
+        axios.get("https://dummyjson.com/products?limit=100")
             .then((response) => {
-                setItems(response.data)
+                setItems(response.data.products)
             })
             .catch((error) => {
                 throw new Error(error)
@@ -43,17 +45,22 @@ function App() {
         }
         setSnakeOpen(true)
     }
+
     function removeFromBasket(basketId) {
         setCardItems([...cardItems].filter(elem => {
             return elem.id !== basketId;
         }))
     }
-    function filterSearch(query){
-        if (query.length === 0)return items;
-        else{
-            setItems()
-        }
+
+    function getSortedItems() {
+        if (searchQuery !== "") return [...items].filter(elem => {
+                return elem.title.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1
+            }
+        )
+        return [...items];
     }
+
+    const sortedItems = getSortedItems();
 
     return (
         <div className="App">
@@ -62,8 +69,10 @@ function App() {
                 badgeLen={cardItems.length}
             />
             <Container>
-                <Search/>
-                <CardList items={items}
+                <Search
+                    searchQuery={setSearchQuery}
+                />
+                <CardList items={sortedItems}
                           getItem={getItem}
                           isLoading={isLoading}
                 />
@@ -77,7 +86,7 @@ function App() {
             />
             <Snack
                 isOpen={isSnakeOpen}
-                handleClose={()=>setSnakeOpen(false)}
+                handleClose={() => setSnakeOpen(false)}
             />
         </div>
     );

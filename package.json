@@ -1,7 +1,7 @@
 {
   "name": "material-shop",
   "version": "0.1.0",
-  "homepage": "https://STyshchyk.github.io/react-gh-pages",
+  "homepage": "https://STyshchyk.github.io/material-shop",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",

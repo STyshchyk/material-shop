@@ -5,28 +5,18 @@ import CardList from "./components/CardList";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Basket from "./components/Basket";
-import axios from "axios";
 import Snack from "./components/Snack";
+import useFetch from "./hooks/useFetch";
 
 
 function App() {
     const [isCardOpen, setCardOpen] = useState(false)
-    const [items, setItems] = React.useState([]);
     const [cardItems, setCardItems] = React.useState([])
-    const [isLoading, setLoading] = React.useState(true)
     const [isSnakeOpen, setSnakeOpen] = React.useState(false)
     const [searchQuery, setSearchQuery] = React.useState("")
 
-    React.useEffect(() => {
-        axios.get("https://dummyjson.com/products?limit=100")
-            .then((response) => {
-                setItems(response.data.products)
-            })
-            .catch((error) => {
-                throw new Error(error)
-            })
-        setLoading(false)
-    }, [])
+    const {items, isLoading} = useFetch("https://dummyjson.com/products?limit=100")
+
 
     function getItem(basketItem) {
         let obj = cardItems.find((elem) => {

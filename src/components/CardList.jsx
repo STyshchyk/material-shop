@@ -3,14 +3,12 @@ import CardItem from "./CardItem";
 import {Grid} from "@mui/material";
 
 const CardList = (props) => {
-
     const {
         items,
         isLoading,
         getItem = Function.prototype
 
     } = props;
-    console.log(items)
     return (
         <Grid container spacing={2}>
             {!isLoading && items.length > 0 ?

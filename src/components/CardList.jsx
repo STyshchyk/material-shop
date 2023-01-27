@@ -1,6 +1,6 @@
 import React from 'react';
 import CardItem from "./CardItem";
-import {Grid} from "@mui/material";
+import {CircularProgress, Grid} from "@mui/material";
 
 const CardList = (props) => {
     const {
@@ -24,7 +24,7 @@ const CardList = (props) => {
                     />
                 )
 
-                : <h1>Loading</h1>
+                : <CircularProgress color="secondary" />
             }
         </Grid>
     );

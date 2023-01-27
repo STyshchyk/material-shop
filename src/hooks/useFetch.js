@@ -33,5 +33,5 @@ export default function useFetch(url, limit, skip = 0) {
             })
     }, [fetchData.url, fetchData.skip, fetchData.limit])
 
-    return {items, isLoading, fetchData, setFetchData, pagesCount}
+    return {items, isLoading, fetchData, error, setFetchData, pagesCount}
 }

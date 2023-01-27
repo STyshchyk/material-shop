@@ -8,12 +8,13 @@ const CardList = (props) => {
         items,
         isLoading,
         getItem = Function.prototype
-    } = props;
 
+    } = props;
+    console.log("render")
     return (
         <Grid container spacing={2}>
-            {!isLoading && items ?
-                items.products.map(elem =>
+            {!isLoading && items.length > 0 ?
+                items.map(elem =>
                     <CardItem
                         cardElem={elem}
                         key={elem.title}

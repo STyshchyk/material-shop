@@ -2,11 +2,14 @@ import React from 'react';
 import {TextField} from "@mui/material";
 
 const Search = (props) => {
-    const {onChange, value} = props;
+    const {
+        search,
+        searchQuery
+    } = props;
     return (<TextField
         id="filled-basic" label="Search" variant="standard"
-        onChange={onChange}
-        value = {value}
+        onChange={(e)=>searchQuery(e.target.value)}
+        value={search}
         fullWidth
         sx={{color: "white", mb: 2}}
     >

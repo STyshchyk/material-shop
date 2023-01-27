@@ -1,6 +1,6 @@
 import './App.css';
 import React, {useState} from 'react';
-import {Container} from "@mui/material";
+import {Container, Pagination} from "@mui/material";
 import CardList from "./components/CardList";
 import Header from "./components/Header";
 import Search from "./components/Search";
@@ -14,8 +14,12 @@ function App() {
     const [cardItems, setCardItems] = React.useState([])
     const [isSnakeOpen, setSnakeOpen] = React.useState(false)
     const [searchQuery, setSearchQuery] = React.useState("")
+    const [page, setPage] = React.useState(1)
+    const {items, isLoading, fetchData, setFetchData, pagesCount} = useFetch("https://dummyjson.com/products/", 12, 0)
 
-    const {items, isLoading} = useFetch("https://dummyjson.com/products?limit=100")
+    const handleChange = (event, value) => {
+        setPage(value)
+    };
 
     // return <h1>Hello</h1>
     function getItem(basketItem) {
@@ -47,7 +51,7 @@ function App() {
                 return elem.title.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1
             }
         )
-        else if(!isLoading) return [...items?.products];
+        else if (!isLoading) return [...items?.products];
     }
 
     const sortedItems = getSortedItems();
@@ -78,7 +82,21 @@ function App() {
                 isOpen={isSnakeOpen}
                 handleClose={() => setSnakeOpen(false)}
             />
+            <Pagination
+                count={pagesCount}
+                page={page}
+                onChange={(e, value) => {
+                    handleChange(e, value)
+                    setFetchData({...fetchData, skip: fetchData.limit * value - fetchData.limit})
+                }}
+                size="large"
+                color="primary"
+                variant="outlined"
+                shape="rounded"
+                sx={{mt: 3, mb: 3, display: "flex", justifyContent: "center"}}
+            />
         </div>
+
     );
 }
 

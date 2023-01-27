@@ -1,26 +1,37 @@
 import axios from "axios";
 import React from "react";
 
-export default function useFetch (url){
+export default function useFetch(url, limit, skip = 0) {
     const [items, setItems] = React.useState([])
     const [isLoading, setLoading] = React.useState(true)
     const [error, setError] = React.useState("error")
+    const [fetchData, setFetchData] = React.useState({
+        url: url,
+        limit: limit,
+        skip: skip
+    })
+    const [pagesCount, setPagesCount] = React.useState(1)
 
-
-    React.useEffect(()=>{
+    React.useEffect(() => {
         setLoading(true)
         axios
-            .get(url)
-            .then((response)=>{
-                setItems(response.data)
+            .get(fetchData.url, {
+                params: {
+                    limit: fetchData.limit,
+                    skip: fetchData.skip
+                }
             })
-            .catch((err)=>{
+            .then((response) => {
+                setItems(response.data)
+                setPagesCount(Math.ceil(response.data.total / fetchData.limit))
+            })
+            .catch((err) => {
                 setError(err)
             })
-            .finally(()=>{
+            .finally(() => {
                 setLoading(false)
             })
-    }, [url])
+    }, [fetchData.url, fetchData.skip, fetchData.limit])
 
-    return{items, isLoading, error}
+    return {items, isLoading, fetchData, setFetchData, pagesCount}
 }

@@ -17,7 +17,7 @@ function App() {
 
     const {items, isLoading} = useFetch("https://dummyjson.com/products?limit=100")
 
-
+    // return <h1>Hello</h1>
     function getItem(basketItem) {
         let obj = cardItems.find((elem) => {
             if (elem.title === basketItem.title) {
@@ -43,11 +43,11 @@ function App() {
     }
 
     function getSortedItems() {
-        if (searchQuery !== "") return [...items].filter(elem => {
+        if (searchQuery !== "" && !isLoading) return [...items?.products].filter(elem => {
                 return elem.title.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1
             }
         )
-        return [...items];
+        else if(!isLoading) return [...items?.products];
     }
 
     const sortedItems = getSortedItems();

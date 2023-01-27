@@ -12,7 +12,7 @@ export default function useFetch (url){
         axios
             .get(url)
             .then((response)=>{
-                setItems(response.data.products)
+                setItems(response.data)
             })
             .catch((err)=>{
                 setError(err)

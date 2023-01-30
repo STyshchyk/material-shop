@@ -17,11 +17,11 @@ function App() {
     const [page, setPage] = React.useState(1)
     const {items, isLoading, fetchData, setFetchData, pagesCount} = useFetch("https://dummyjson.com/products/", 12, 0)
 
+
+
     const handleChange = (event, value) => {
         setPage(value)
     };
-
-    // return <h1>Hello</h1>
     function getItem(basketItem) {
         let obj = cardItems.find((elem) => {
             if (elem.title === basketItem.title) {
@@ -39,22 +39,22 @@ function App() {
         }
         setSnakeOpen(true)
     }
-
     function removeFromBasket(basketId) {
         setCardItems([...cardItems].filter(elem => {
             return elem.id !== basketId;
         }))
     }
-
     function getSortedItems() {
-        if (searchQuery !== "" && !isLoading) return [...items?.products].filter(elem => {
-                return elem.title.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1
-            }
-        )
-        else if (!isLoading) return [...items?.products];
-    }
+         if (searchQuery !== "" && !isLoading) {
+            setFetchData({...fetchData, url: `https://dummyjson.com/products/search?q=${searchQuery}`})
+            setSearchQuery("")
+        } else if (!isLoading) return [...items?.products];
 
+    }
     const sortedItems = getSortedItems();
+
+
+
 
     return (
         <div className="App">

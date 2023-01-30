@@ -8,10 +8,9 @@ export default function useFetch(url, limit, skip = 0) {
     const [fetchData, setFetchData] = React.useState({
         url: url,
         limit: limit,
-        skip: skip
+        skip: skip,
     })
     const [pagesCount, setPagesCount] = React.useState(1)
-
     React.useEffect(() => {
         setLoading(true)
         axios

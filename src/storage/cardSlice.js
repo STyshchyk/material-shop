@@ -1,4 +1,6 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+
+
 
 const cardSlice = createSlice({
     name: "cardSlice",

@@ -7,9 +7,9 @@ const Header = ({setCardOpen, badgeLen = 0}) => {
         <AppBar position={"sticky"} sx={{marginBottom: 2}}>
             <Toolbar>
                 <Typography
-                    component={"h6"}
+                    component={"a"}
                     variant={"h5"}
-                    sx={{flexGrow: 1}}
+                    sx={{flexGrow: 1, cursor: "pointer"}}
                 >
                     MUI Shop
                 </Typography>

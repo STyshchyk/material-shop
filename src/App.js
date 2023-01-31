@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import React from 'react';
 import {Container, Pagination} from "@mui/material";
 import CardList from "./components/CardList";
 import Header from "./components/Header";
@@ -10,14 +10,15 @@ import useFetch from "./hooks/useFetch";
 
 
 function App() {
-    const [isCardOpen, setCardOpen] = useState(false)
+
+    const [isCardOpen, setCardOpen] = React.useState(false)
     const [cardItems, setCardItems] = React.useState([])
     const [isSnakeOpen, setSnakeOpen] = React.useState(false)
     const [searchQuery, setSearchQuery] = React.useState("")
     const [page, setPage] = React.useState(1)
-    const {items, isLoading, fetchData, setFetchData, pagesCount} = useFetch("https://dummyjson.com/products/", 12, 0)
+    const {data, isLoading, fetchData, setFetchData, pagesCount} = useFetch("", 12, 0)
 
-
+// return <h1>hello</h1>
 
     const handleChange = (event, value) => {
         setPage(value)
@@ -48,16 +49,14 @@ function App() {
          if (searchQuery !== "" && !isLoading) {
             setFetchData({...fetchData, url: `https://dummyjson.com/products/search?q=${searchQuery}`})
             setSearchQuery("")
-        } else if (!isLoading) return [...items?.products];
+        } else if (!isLoading) return [...data?.products];
 
     }
     const sortedItems = getSortedItems();
-
-
-
-
     return (
         <div className="App">
+
+
             <Header
                 setCardOpen={setCardOpen}
                 badgeLen={cardItems.length}

@@ -1,27 +1,21 @@
-import './App.css';
 import React from 'react';
-import {Container, Pagination} from "@mui/material";
-import CardList from "./components/CardList";
+import useFetch from "./hooks/useFetch";
 import Header from "./components/Header";
+import {Container, Pagination} from "@mui/material";
 import Search from "./components/Search";
+import CardList from "./components/CardList";
 import Basket from "./components/Basket";
 import Snack from "./components/Snack";
-import useFetch from "./hooks/useFetch";
 
-
-function App() {
-
+const App = () => {
     const [isCardOpen, setCardOpen] = React.useState(false)
     const [cardItems, setCardItems] = React.useState([])
     const [isSnakeOpen, setSnakeOpen] = React.useState(false)
     const [searchQuery, setSearchQuery] = React.useState("")
     const [page, setPage] = React.useState(1)
     const {data, isLoading, fetchData, setFetchData} = useFetch("", 12, 0)
-
-
-// return <h1>hello</h1>
-
-
+    // console.log(data)
+ // return <h1>hello</h1>
 
     const handleChange = (event, value) => {
         setPage(value)
@@ -110,8 +104,7 @@ function App() {
             }
 
         </div>
-
-    );
-}
+    )
+};
 
 export default App;

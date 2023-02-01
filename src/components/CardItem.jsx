@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Card, CardActions, CardContent, CardMedia, Grid, Typography} from "@mui/material";
-
+import {Link} from "react-router-dom"
 const CardItem = (props) => {
     const {
         cardElem,
@@ -34,7 +34,7 @@ const CardItem = (props) => {
                         variant="body2"
                         component="span"
                         sx={{fontWeight:"700"}}
-                       
+
                     >
                         {cardTitle}
                     </Typography>
@@ -61,6 +61,14 @@ const CardItem = (props) => {
                         size="small"
                         onClick={() => getItem(cardElem)}
                     >Add to cart</Button>
+                    <Button
+                        variant={"outlined"}
+                        size="small"
+                        onClick={()=>{
+                            console.log(cardElem.id)}}
+                    >
+                    <Link to={`/product/${cardElem.id}`}> Get it</Link>
+                    </Button>
                 </CardActions>
 
             </Card>

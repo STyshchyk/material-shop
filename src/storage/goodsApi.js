@@ -4,28 +4,30 @@ export const goodsApi = createApi({
     reducerPath: "goodsApi",
     baseQuery: fetchBaseQuery(
         {
-            baseUrl: "https://dummyjson.com/products/"
+            baseUrl: "https://dummyjson.com/products"
         }),
-    endpoints: (builder) => ({
-        getGoods: builder.query({
+    endpoints: (build) => ({
+        getGoods: build.query({
             query(arg) {
-                const {urls = "", limit = 4, skip = 0} = arg;
-                return {
-                    url: `${urls}`,
+                const {url, limit, skip} = arg;
+                return{
+                    url: `${url}`,
                     params: {
                         limit,
                         skip
                     }
-
                 }
             }
 
-            ,
+        }),
+        getItem: build.query({
+            query: (id) => `/${id}`,
+
         })
     })
 
 
 })
 
-export const {useGetGoodsQuery} = goodsApi;
+export const {useGetGoodsQuery, useGetItemQuery} = goodsApi;
 

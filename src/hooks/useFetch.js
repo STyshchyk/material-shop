@@ -7,14 +7,13 @@ export default function useFetch(url, limit, skip = 0) {
         limit: limit,
         skip: skip,
     })
-    const { data, error, isLoading } = useGetGoodsQuery({
+    const {data, error, isLoading} = useGetGoodsQuery({
         url: fetchData.url,
         limit: fetchData.limit,
         skip: fetchData.skip
     });
 
-    const [pagesCount, setPagesCount] = React.useState(10)
 
 
-    return {data, isLoading, fetchData, error, setFetchData, pagesCount}
+    return {data, isLoading, fetchData, error, setFetchData}
 }

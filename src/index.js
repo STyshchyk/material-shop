@@ -5,11 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import {store} from "./storage/store"
-import { createBrowserRouter, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, createHashRouter, RouterProvider} from "react-router-dom";
 import Product from "./Pages/Product";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: "/",
         element: <App/>,
